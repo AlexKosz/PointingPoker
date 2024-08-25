@@ -1,0 +1,59 @@
+{
+  "extends": ["airbnb", "plugin:jest/recommended", "prettier"],
+  "plugins": ["jest", "prettier", "simple-import-sort", "react-hooks"],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.spec.js", "setup-jest.js"] }
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unstable-nested-components": "off",
+    "react/require-default-props": "off",
+    "no-underscore-dangle": "off",
+    "no-restricted-exports": "off",
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }]
+  },
+  "ignorePatterns": ["cypress/*"],
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx", "**/*.spec.js", "**/*.spec.jsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              ["^react$", "^next", "^[a-z]"],
+              ["^@"],
+              ["^~"],
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              ["^.+\\.s?css$"],
+              ["^\\u0000"]
+            ]
+          }
+        ]
+      },
+      "env": {
+        "jest": true,
+        "browser": true
+      }
+    }
+  ],
+  "globals": {
+    "window": true,
+    "document": true
+  },
+  "parser": "@babel/eslint-parser"
+}
