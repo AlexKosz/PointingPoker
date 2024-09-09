@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+.voteHeader {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.pageDesignBox {
+  background-color: #ffffff;
+  border: 1px solid #4d0990;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.voteAndButtonWrapper {
+  width: 100%;
+  margin-bottom: 10vh;
+  display: flex;
+  max-width: 100vw;
+}
+.participantsWrapper {
+  width: 100%;
+  margin-bottom: 10vh;
+  padding: 20px;
+  overflow-y: auto;
+}
+.inviteWrapper {
+  width: 100%;
+}
+.inviteWrapper * {
+  margin: 10px;
+}
+.votesWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.voteBox {
+  background-color: #e5e7eb;
+  min-width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.voteButtons {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.primaryColorButton {
+  background-color: #4d0990;
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+}
+.primaryColorButton:hover {
+  background-color: #8a48cc;
+  cursor: pointer;
+}
+.votes {
+  flex: 2;
+  padding: 2vh;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 30px;
+}
+.participant,
+.linkBox {
+  background-color: #e5e7eb;
+  flex: 10;
+  border-radius: 8px;
+  padding: 1rem;
+}
+.vote {
+  background-color: #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+}
+
+.participantsWrapperInner {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.mainPointingPageColumn ::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  height: 12px; /* Height of the scrollbar for horizontal scroll */
+  padding: 30px;
+}
+
+/* Scrollbar Track */
+.mainPointingPageColumn ::-webkit-scrollbar-track {
+  background: #e5e7eb; /* Color of the track */
+  border-radius: 10px; /* Round the corners of the track */
+}
+
+/* Scrollbar Thumb */
+.mainPointingPageColumn ::-webkit-scrollbar-thumb {
+  background: #4d0990; /* Color of the thumb */
+  border-radius: 10px; /* Round the corners of the thumb */
+}
+
+/* Scrollbar Thumb on Hover */
+.mainPointingPageColumn ::-webkit-scrollbar-thumb:hover {
+  background: #8a48cc; /* Color of the thumb when hovered */
+}
+.mainPointingPageColumn {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Barlow;
+  background-color: #d4a8f0;
+}
+.activeVoteBox {
+  background-color: #4d0990;
+  color: #ffffff;
+}
+.modalScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: hsla(0, 0%, 27%, 0.637);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: barlow;
+}
+.modalBox {
+  background-color: #ffffff;
+  font-weight: 600;
+  width: 50%;
+}
+.summaryBox h1 {
+  margin: 0;
+  background-color: #b1b1b1;
+  font-weight: 500;
+}
