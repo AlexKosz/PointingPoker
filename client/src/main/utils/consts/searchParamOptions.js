@@ -1,5 +1,5 @@
 const searchParamOptions = {
-	ROOM: "room", // ID
+  ROOM: "room", // ID
 };
 
 module.exports = searchParamOptions;

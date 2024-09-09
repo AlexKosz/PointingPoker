@@ -48,143 +48,170 @@ const ChatRoom = () => {
     };
   }, [room]);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const showVoteButtonOnClick = () => {
-      setIsModalOpen(true);
-    }
+  const showVoteButtonOnClick = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <>
-    <div class="mainPointingPageColumn">
-      <div class="voteAndButtonWrapper">
-        <div class="votes pageDesignBox">
-          <h1 class="voteHeader">Vote:</h1>
-          <div class="votesWrapper">
-            <div class="voteBox activeVoteBox"><p>0</p></div>
-            <div class="voteBox"><p>0.5</p></div>
-            <div class="voteBox"><p>1</p></div>
-            <div class="voteBox"><p>2</p></div>
-            <div class="voteBox"><p>3</p></div>
-            <div class="voteBox"><p>4</p></div>
-            <div class="voteBox"><p>5</p></div>
-            <div class="voteBox"><p>6</p></div>
-            <div class="voteBox"><p>7</p></div>
-            <div class="voteBox"><p>8</p></div>
+      <div class="mainPointingPageColumn">
+        <div class="voteAndButtonWrapper">
+          <div class="votes pageDesignBox">
+            <h1 class="voteHeader">Vote:</h1>
+            <div class="votesWrapper">
+              <div class="voteBox activeVoteBox">
+                <p>0</p>
+              </div>
+              <div class="voteBox">
+                <p>0.5</p>
+              </div>
+              <div class="voteBox">
+                <p>1</p>
+              </div>
+              <div class="voteBox">
+                <p>2</p>
+              </div>
+              <div class="voteBox">
+                <p>3</p>
+              </div>
+              <div class="voteBox">
+                <p>4</p>
+              </div>
+              <div class="voteBox">
+                <p>5</p>
+              </div>
+              <div class="voteBox">
+                <p>6</p>
+              </div>
+              <div class="voteBox">
+                <p>7</p>
+              </div>
+              <div class="voteBox">
+                <p>8</p>
+              </div>
+            </div>
+          </div>
+          <div class="voteButtons">
+            <div>
+              <button
+                class="primaryColorButton"
+                onClick={showVoteButtonOnClick}
+              >
+                Show Votes
+              </button>
+            </div>
+            <div>
+              <button class="primaryColorButton">Clear Votes</button>
+            </div>
           </div>
         </div>
-        <div class="voteButtons">
-          <div><button class="primaryColorButton" onClick={showVoteButtonOnClick}>Show Votes</button></div>
-          <div><button class="primaryColorButton">Clear Votes</button></div>
-        </div>
-      </div>
-      <div class="participantsWrapper pageDesignBox">
-        <div class="participantsWrapperInner">
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
-          </div>
-          <div class="row">
-            <div class="participant">Name</div>
-            <div class="vote">1</div>
+        <div class="participantsWrapper pageDesignBox">
+          <div class="participantsWrapperInner">
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
+            <div class="row">
+              <div class="participant">Name</div>
+              <div class="vote">1</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="inviteWrapper pageDesignBox row">
-        <div class="linkBox">Temporary Link Here</div>
-        <div><button class="primaryColorButton">Copy Link</button></div>
-      </div>
-    </div>
-
-{
-isModalOpen && (    <div class="modalScreen">
-      <div class="modalBox">
-        <div class="summaryBox">
-          <h1>Round Summary</h1>
+        <div class="inviteWrapper pageDesignBox row">
+          <div class="linkBox">Temporary Link Here</div>
+          <div>
+            <button class="primaryColorButton">Copy Link</button>
+          </div>
         </div>
-
-        <div class="modalInner"></div>
-        <div class="modalImage"></div>
       </div>
-    </div>)
 
+      {isModalOpen && (
+        <div class="modalScreen">
+          <div class="modalBox">
+            <div class="summaryBox">
+              <h1>Round Summary</h1>
+            </div>
 
-  
-}
-
+            <div class="modalInner"></div>
+            <div class="modalImage"></div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
