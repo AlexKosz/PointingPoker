@@ -1,0 +1,341 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: DM Sans, Arial, sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #f4f4f9;
+}
+
+.header {
+	width: 100%;
+	padding: 1em;
+	background-color: #4b0082; /* Deep purple */
+	color: #fff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+}
+
+.header h1 {
+	margin-left: 1em;
+}
+
+.header nav a {
+	color: #fff;
+	margin-right: 1em;
+	text-decoration: none;
+}
+
+.main-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 80%;
+	max-width: 100vw;
+	margin-top: 1em; /* Adjusted for fixed header */
+}
+
+.voting-area {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 2em;
+}
+
+.point-cards {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.5em;
+}
+
+.point-card {
+	padding: 1em;
+	font-size: 1.2em;
+	background-color: #a152eb; /* Bright purple */
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.point-card:hover {
+	background-color: #6a0dad; /* Darker purple */
+}
+
+.abstain-button {
+	margin-top: 1em;
+	padding: 0.5em 1.5em;
+	background-color: #a152eb; /* Coppery tone */
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.abstain-button:hover {
+	background-color: #6a0dad; /* Darker copper */
+}
+
+.participant-list {
+	display: flex;
+	flex-wrap: wrap; /* Allows wrapping to next line */
+	justify-content: center;
+	gap: 1em;
+	max-width: 100vw; /* Limits the width of the participant list */
+	margin: 0 auto; /* Centers the content */
+}
+
+.participant {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	width: 200px;
+	max-width: 35vw;
+	min-height: 120px; /* Set a minimum height */
+	padding: 1em;
+	background-color: #e6e6fa; /* Light lavender */
+	border-radius: 8px;
+}
+
+.participant .avatar {
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+}
+
+.notVoted {
+	background-color: #a152eb; /* Deep purple */
+}
+
+.voted {
+	background-color: #4b0082; /* Deep purple */
+}
+
+.participant-name {
+	font-size: 0.75em;
+	font-weight: bold;
+	color: #333;
+	max-width: 100%; /* Set a max-width for name truncation */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+
+.vote-status {
+	font-size: 0.8em;
+	color: #666;
+}
+
+.user-profile {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 5em;
+	padding: 1em;
+	background-color: #e6e6fa; /* Light lavender */
+	border-radius: 8px;
+	max-width: 600px;
+	padding: 0.5em 2em;
+}
+
+.user-profile .avatar {
+	width: 50px;
+	height: 50px;
+	background-color: #4b0082; /* Deep purple */
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	font-size: 1.2em;
+	margin-right: 1em;
+}
+
+.user-profile .user-name {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #4b0082;
+}
+
+.vote-controls {
+	display: flex;
+	justify-content: center;
+	gap: 1em;
+	margin-top: 2em;
+}
+
+.reveal-votes,
+.clear-votes {
+	padding: 0.7em 1.5em;
+	font-size: 1em;
+	color: #fff;
+	background-color: #8a2be2; /* Bright purple */
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.reveal-votes:hover {
+	background-color: #6a0dad; /* Darker purple */
+}
+
+.clear-votes {
+	background-color: #d2691e; /* Coppery tone for contrast */
+}
+
+.clear-votes:hover {
+	background-color: #a0522d; /* Darker copper */
+}
+
+/* Modal background */
+.modal {
+	display: none; /* Use flexbox for centering */
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+	z-index: 20; /* Ensure it appears above other elements */
+}
+
+/* Modal content */
+.modal-content {
+	background-color: #fff;
+	padding: 2em;
+	border-radius: 8px;
+	width: 90%; /* Width relative to viewport */
+	max-width: 600px; /* Maximum width for larger displays */
+	text-align: center;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+	position: relative; /* Required for positioning child elements absolutely */
+}
+
+/* Close button */
+.close-modal {
+	position: absolute; /* Absolute positioning within the modal content */
+	top: 10px; /* Distance from top */
+	right: 20px; /* Distance from right */
+	font-size: 1.5em;
+	color: #333;
+	cursor: pointer;
+}
+
+/* Modal title */
+.modal-title {
+	font-size: 1.8em;
+	margin-bottom: 1em;
+}
+
+/* Modal body */
+.modal-body {
+	margin: 1em 0;
+}
+
+/* Table styling */
+.results-table {
+	width: 100%;
+	border-collapse: collapse; /* Ensures borders are combined */
+	margin-top: 1em;
+}
+
+/* Table header */
+.table-header {
+	background-color: #e6e6fa; /* Light lavender for header */
+}
+
+.header-score,
+.header-votes,
+.header-users {
+	border: 1px solid #ccc; /* Light border for clarity */
+	padding: 0.5em;
+	text-align: center;
+	font-weight: bold; /* Bold text for headers */
+}
+
+/* Table row styling */
+.table-row {
+	background-color: #f9f9f9; /* Light gray for rows */
+}
+
+.score-value,
+.vote-count,
+.user-list {
+	border: 1px solid #ccc; /* Light border for clarity */
+	padding: 0.5em; /* Padding for better spacing */
+	text-align: center; /* Center the text in cells */
+}
+
+/* Button styling */
+.consensus-button {
+	margin-top: 1em;
+	padding: 0.5em 1.5em; /* Padding for better click area */
+	background-color: #8a2be2; /* Bright purple */
+	color: #fff; /* White text for contrast */
+	border: none; /* No border */
+	border-radius: 8px; /* Rounded corners */
+	cursor: pointer; /* Pointer cursor on hover */
+	transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.consensus-button:hover {
+	background-color: #6a0dad; /* Darker purple on hover */
+}
+
+/* Voting Progress Section */
+.voting-progress {
+	margin-bottom: 1.5em; /* Space above the voting progress section */
+	text-align: center; /* Center the text */
+}
+
+/* Progress bar container */
+.progress-bar-container {
+	background-color: #e0e0e0; /* Light gray background */
+	border-radius: 5px; /* Rounded corners */
+	overflow: hidden; /* Ensure child elements don’t overflow */
+	height: 25px; /* Height of the progress bar */
+	margin: 0.5em 0; /* Margin for spacing */
+}
+
+/* Progress bar */
+.progress-bar {
+	background-color: #8a2be2; /* Bright purple for the progress bar */
+	height: 100%; /* Full height of the container */
+	transition: width 0.4s ease; /* Smooth transition for width change */
+}
+
+/* Progress percentage text */
+.progress-percentage {
+	font-weight: bold; /* Bold text for visibility */
+	color: #333; /* Dark text color */
+}
+
+/* Title for progress */
+.progress-title {
+	font-size: 1.2em; /* Title size */
+}
