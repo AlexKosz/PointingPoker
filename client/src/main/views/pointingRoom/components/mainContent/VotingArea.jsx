@@ -1,7 +1,7 @@
 import React from 'react';
 import PointCard from './PointCard';
 
-const VotingArea = () => {
+const VotingArea = ({ selectValue, selectedValue }) => {
 	const voteNumbers = [0, 0.5, 1, 2, 3, 4, 5, 6, 7, 8];
 
 	return (
@@ -11,6 +11,8 @@ const VotingArea = () => {
 					<PointCard
 						value={value}
 						key={value || index}
+						selectValue={selectValue}
+						isSelected={selectedValue === value}
 					/>
 				))}
 			</div>

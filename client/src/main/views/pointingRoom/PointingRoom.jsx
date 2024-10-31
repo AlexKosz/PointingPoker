@@ -19,6 +19,8 @@ const ChatRoom = () => {
 	const [userId, setUserId] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
+	const [selectedValue, setSelectedValue] = useState(null);
+
 	useEffect(() => {
 		if (!room) {
 			return;
@@ -60,7 +62,10 @@ const ChatRoom = () => {
 		>
 			<UserProfile />
 			<VoteControls openModal={() => setIsModalOpen(true)} />
-			<MainContent />
+			<MainContent
+				selectedValue={selectedValue}
+				selectValue={(v) => setSelectedValue(v)}
+			/>
 			{isModalOpen && <Modal closeModal={() => setIsModalOpen(false)} />}
 			<h1>Room: {room || 'No room found'}</h1>
 			<h2>Users in Room</h2>
