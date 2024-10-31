@@ -5,6 +5,7 @@ import searchParamOptions from '../../utils/consts/searchParamOptions';
 import UserProfile from './components/UserProfile';
 import VoteControls from './components/VoteControls';
 import MainContent from './components/mainContent/MainContent';
+import Modal from './components/modal/Modal';
 
 const socket = io('http://localhost:3001'); // Replace with your server URL
 
@@ -16,6 +17,7 @@ const ChatRoom = () => {
 
 	const [users, setUsers] = useState([]);
 	const [userId, setUserId] = useState(null);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
 		if (!room) {
@@ -57,8 +59,9 @@ const ChatRoom = () => {
 			}}
 		>
 			<UserProfile />
-			<VoteControls />
+			<VoteControls openModal={() => setIsModalOpen(true)} />
 			<MainContent />
+			{isModalOpen && <Modal closeModal={() => setIsModalOpen(false)} />}
 			<h1>Room: {room || 'No room found'}</h1>
 			<h2>Users in Room</h2>
 			<ul>

@@ -212,7 +212,7 @@ body {
 
 /* Modal background */
 .modal {
-	display: none; /* Use flexbox for centering */
+	display: flex; /* Use flexbox for centering */
 	align-items: center;
 	justify-content: center;
 	position: fixed;
