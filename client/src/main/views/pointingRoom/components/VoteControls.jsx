@@ -6,10 +6,16 @@ const VoteControls = ({ openModal }) => {
 			<button
 				onClick={openModal}
 				className='reveal-votes'
+				data-testid='revealButton'
 			>
 				Reveal Votes
 			</button>
-			<button className='clear-votes'>Clear Votes</button>
+			<button
+				className='clear-votes'
+				data-testid='clearVotes'
+			>
+				Clear Votes
+			</button>
 		</section>
 	);
 };

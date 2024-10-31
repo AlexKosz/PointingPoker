@@ -1,11 +1,5 @@
 import React from 'react';
-
-const getInitials = (name) => {
-	const firstInitial = name[0];
-	const spaceIndex = name.indexOf(' ');
-	const lastInitial = name[spaceIndex + 1];
-	return firstInitial + lastInitial;
-};
+import { getInitials } from '../../../../utils/helperFuncs';
 
 const Participant = ({ name, hasVoted }) => {
 	const hasVotedClass = hasVoted ? 'avatar voted' : 'avatar notVoted';
