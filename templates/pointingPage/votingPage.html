@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Point Poker</title>
+		<link
+			rel="stylesheet"
+			href="votingPage.css"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Domine:wght@400..700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<!-- Header -->
+
+		<!-- Main Content -->
+
+		<!-- Results Modal -->
+		<!-- Modal Structure -->
+		<div
+			className="modal"
+			id="resultsModal"
+		>
+			<div className="modal-content">
+				<span className="close close-modal">&times;</span>
+				<!-- Close button inside the modal content -->
+				<h2 className="modal-title">Voting Results</h2>
+
+				<div className="modal-body">
+					<p className="average-score"><strong>Average Score:</strong> 5</p>
+					<p className="suggested-score"><strong>Suggested Score:</strong> 7</p>
+					<p className="standard-deviation">
+						<strong>Standard Deviation:</strong> 1.5
+					</p>
+
+					<table className="results-table">
+						<thead>
+							<tr className="table-header">
+								<th className="header-score">Score</th>
+								<th className="header-votes">Votes</th>
+								<th className="header-users">Users</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr className="table-row">
+								<td className="score-value">5</td>
+								<td className="vote-count">3</td>
+								<td className="user-list">User1, User2, User3</td>
+							</tr>
+							<tr className="table-row">
+								<td className="score-value">7</td>
+								<td className="vote-count">5</td>
+								<td className="user-list">User4, User5, User6</td>
+							</tr>
+							<tr className="table-row">
+								<td className="score-value">8</td>
+								<td className="vote-count">2</td>
+								<td className="user-list">User7, User8</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<button className="consensus-button">Next Round</button>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
