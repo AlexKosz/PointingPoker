@@ -1,25 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
-import { useSearchParams } from 'react-router-dom';
-import searchParamOptions from '../../utils/consts/searchParamOptions';
+import { useParams, useSearchParams } from 'react-router-dom';
 import UserProfile from './components/UserProfile';
 import VoteControls from './components/VoteControls';
 import MainContent from './components/mainContent/MainContent';
 import Modal from './components/modal/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, clearUser } from '../../../actions/userActions';
 
 const socket = io('http://localhost:3001'); // Replace with your server URL
 
 const ChatRoom = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	console.log(searchParams);
-	const room = searchParams.get(searchParamOptions.ROOM);
+	const { room } = useParams();
 	console.log(room);
+	const dispatch = useDispatch();
 
 	const [users, setUsers] = useState([]);
 	const [userId, setUserId] = useState(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const [selectedValue, setSelectedValue] = useState(null);
+
+	const user = useSelector((state) => state.user.user);
+	console.log(user);
+
+	if (!user) {
+		const userData = { name: 'John Doe' }; // Example user data
+		dispatch(setUser(userData));
+	}
 
 	useEffect(() => {
 		if (!room) {
