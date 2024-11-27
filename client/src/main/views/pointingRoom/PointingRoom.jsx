@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import UserProfile from './components/UserProfile';
 import VoteControls from './components/VoteControls';
 import MainContent from './components/mainContent/MainContent';
 import Modal from './components/modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, clearUser } from '../../../actions/userActions';
+import paths from '../../utils/consts/paths';
 
 const socket = io('http://localhost:3001'); // Replace with your server URL
 
-const ChatRoom = () => {
+const PointingRoom = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	console.log(searchParams);
+	console.log(useParams());
 	const { room } = useParams();
-	console.log(room);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const [users, setUsers] = useState([]);
 	const [userId, setUserId] = useState(null);
@@ -24,45 +26,25 @@ const ChatRoom = () => {
 	const [selectedValue, setSelectedValue] = useState(null);
 
 	const user = useSelector((state) => state.user.user);
-	console.log(user);
-
-	if (!user) {
-		const userData = { name: 'John Doe' }; // Example user data
-		dispatch(setUser(userData));
-	}
+	console.log('USER:', user);
 
 	useEffect(() => {
-		if (!room) {
-			return;
+		if (!user) {
+			navigate(paths.login);
 		}
-		// Join the room
-		// Change to name & room
-		socket.emit('joinRoom', room);
 
-		// Receive user list when joining the room
-		socket.on('userList', (users) => {
-			setUsers(users);
-			setUserId(socket.id); // Set the user ID once connected
+		if (user) {
+			console.log(room);
+			socket.emit('joinRoom', room, user);
+		}
+	}, [user]);
+
+	useEffect(() => {
+		socket.on('userList', (data) => {
+			console.log('server sent back', data);
+			setUsers(data);
 		});
-
-		// Receive notification when a user joins
-		socket.on('userJoined', (newUserId) => {
-			console.log('new user joined');
-			setUsers((prevUsers) => [...prevUsers, newUserId]);
-		});
-
-		// Receive notification when a user leaves
-		socket.on('userLeft', (leftUserId) => {
-			setUsers((prevUsers) => prevUsers.filter((id) => id !== leftUserId));
-		});
-
-		// Clean up on unmount
-		return () => {
-			socket.off('userList');
-			socket.off('userJoined');
-			socket.off('userLeft');
-		};
-	}, [room]);
+	}, [socket]);
 
 	return (
 		<div
@@ -70,7 +52,7 @@ const ChatRoom = () => {
 				marginTop: '20vh',
 			}}
 		>
-			<UserProfile />
+			<UserProfile user={user} />
 			<VoteControls openModal={() => setIsModalOpen(true)} />
 			<MainContent
 				selectedValue={selectedValue}
@@ -81,11 +63,11 @@ const ChatRoom = () => {
 			<h2>Users in Room</h2>
 			<ul>
 				{users.map((user) => (
-					<li key={user}>{user === userId ? 'You' : user}</li>
+					<li key={user}>{user.name}</li>
 				))}
 			</ul>
 		</div>
 	);
 };
 
-export default ChatRoom;
+export default PointingRoom;
