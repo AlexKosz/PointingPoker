@@ -21,11 +21,11 @@ const AppRouter = () => {
 			<HistoryRouter history={history}>
 				<Routes>
 					<Route
-						path='/'
+						path="/"
 						element={<Login />}
 					/>
 					<Route
-						path={paths.room}
+						path={paths.roomPattern}
 						element={<PointingRoom />}
 					/>
 				</Routes>
