@@ -5,6 +5,10 @@
 	font-family: DM Sans, Arial, sans-serif;
 }
 
+:root {
+	--navbar-height: 75px;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
@@ -26,6 +30,11 @@ body {
 	left: 0;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	z-index: 10;
+	height: var(--navbar-height);
+}
+
+.login {
+	padding-top: calc(var(--navbar-height) + 15px);
 }
 
 .header h1 {
