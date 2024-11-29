@@ -26,11 +26,17 @@ io.on('connection', (socket) => {
 		if (!usersInRoom[room]) {
 			usersInRoom[room] = [newUser];
 		} else if (!usersInRoom[room].some((user) => user.id === socket.id)) {
+			console.log('should add');
+			console.log(usersInRoom[room], socket.id);
 			usersInRoom[room].push(newUser);
 		}
 
 		io.emit('userList', usersInRoom[room]);
 		io.to(room).emit('userJoined', newUser);
+	});
+
+	socket.on('vote', (room, user, value) => {
+		console.log(socket.id, value, user, usersInRoom[room]);
 	});
 
 	// socket.on('disconnect', () => {
