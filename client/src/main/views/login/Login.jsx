@@ -64,7 +64,7 @@ function Login() {
 			<hr />
 
 			<input
-				placeholder="Target room"
+				placeholder="Room"
 				onChange={(event) => {
 					setRoom(event.target.value);
 				}}
