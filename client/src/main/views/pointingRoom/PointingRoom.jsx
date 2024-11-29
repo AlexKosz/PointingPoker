@@ -46,6 +46,11 @@ const PointingRoom = () => {
 		});
 	}, [socket]);
 
+	useEffect(() => {
+		console.log(selectedValue);
+		socket.emit('vote', room, user, selectedValue);
+	}, [selectedValue]);
+
 	return (
 		<div
 			style={{
@@ -57,15 +62,10 @@ const PointingRoom = () => {
 			<MainContent
 				selectedValue={selectedValue}
 				selectValue={(v) => setSelectedValue(v)}
+				participants={users}
 			/>
 			{isModalOpen && <Modal closeModal={() => setIsModalOpen(false)} />}
-			<h1>Room: {room || 'No room found'}</h1>
-			<h2>Users in Room</h2>
-			<ul>
-				{users.map((user) => (
-					<li key={user}>{user.name}</li>
-				))}
-			</ul>
+			<h1>Room: {room || 'No room founda '}</h1>
 		</div>
 	);
 };

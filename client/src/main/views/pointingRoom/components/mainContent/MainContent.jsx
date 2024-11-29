@@ -3,15 +3,16 @@ import VotingArea from './VotingArea';
 import VotingProgress from './VotingProgress';
 import ParticipantList from './ParticipantList';
 
-const MainContent = ({ selectValue, selectedValue }) => {
+const MainContent = ({ selectValue, selectedValue, participants }) => {
 	return (
-		<main className='main-content'>
+		<main className="main-content">
 			<VotingArea
 				selectValue={selectValue}
 				selectedValue={selectedValue}
 			/>
 			<VotingProgress progress={Math.random()} />
-			<ParticipantList />
+
+			<ParticipantList participants={participants} />
 		</main>
 	);
 };
