@@ -22,7 +22,9 @@ const VotingArea = ({ selectValue, selectedValue }) => {
 			</div>
 			<button
 				className={abstainBtnClass}
-				onClick={() => selectValue(null)}
+				onClick={() => {
+					console.log('na');
+				}}
 			>
 				Abstain
 			</button>
