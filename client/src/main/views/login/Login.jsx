@@ -1,4 +1,4 @@
-import './App.css';
+import '../app/loginPage.css';
 import io from 'socket.io-client';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -31,8 +31,6 @@ function Login() {
 			return;
 		}
 
-		console.log('Data was valid', 'Room:', room, 'Name:', name);
-
 		const newUser = { name: name };
 
 		dispatch(setUser(newUser));
@@ -54,25 +52,41 @@ function Login() {
 
 	return (
 		<div className="login">
-			<input
-				placeholder="Your name"
-				onChange={(event) => {
-					setName(event.target.value);
-				}}
-			/>
-
-			<hr />
-
-			<input
-				placeholder="Room"
-				onChange={(event) => {
-					setRoom(event.target.value);
-				}}
-			/>
-
-			<hr />
-
-			<button onClick={joinRoom}> Join Room</button>
+			<div class="mainLoginDiv">
+				<div class="card">
+					<img
+						src="pointerLogo.svg"
+						alt="logo"
+					/>
+					<form>
+						<fieldset>
+							<label for="firstName">
+								Name:
+								<input
+									placeholder="Your name"
+									onChange={(event) => {
+										setName(event.target.value);
+									}}
+								/>
+							</label>
+							<label for="room">
+								Room:{' '}
+								<input
+									placeholder="Room"
+									onChange={(event) => {
+										setRoom(event.target.value);
+									}}
+								/>
+							</label>
+						</fieldset>
+						<input
+							type="submit"
+							value="Join Room"
+							onClick={joinRoom}
+						/>
+					</form>
+				</div>
+			</div>
 		</div>
 	);
 }
