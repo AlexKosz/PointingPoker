@@ -7,7 +7,8 @@ const ParticipantList = ({ participants }) => {
 			{(participants || []).map((value, index) => (
 				<Participant
 					name={value.name}
-					hasVoted={value.hasVoted}
+					hasVoted={value.vote !== undefined}
+					vote={value.vote} // TODO: REMOVE
 					key={index}
 				/>
 			))}
