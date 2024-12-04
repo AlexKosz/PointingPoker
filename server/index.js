@@ -32,13 +32,40 @@ io.on('connection', (socket) => {
 		}
 
 		io.emit('userList', usersInRoom[room]);
+		io.to(socket.id).emit('iJoin', newUser);
 		io.to(room).emit('userJoined', newUser);
 	});
 
 	socket.on('vote', (room, user, value) => {
-		console.log(socket.id, value, user, usersInRoom[room]);
+		if (!usersInRoom[room]) {
+			return;
+		}
+
+		const voterIndex = usersInRoom[room].findIndex(
+			(element) => element.id === socket.id
+		);
+
+		if (voterIndex === -1) {
+			return;
+		}
+
+		usersInRoom[room][voterIndex].vote = value;
+
+		io.emit('userList', usersInRoom[room]);
 	});
 
+	socket.on('clearVotes', (room) => {
+		if (!usersInRoom[room]) {
+			return;
+		}
+
+		const arrayToManipulate = usersInRoom[room];
+		arrayToManipulate.forEach((obj) => {
+			obj.vote = undefined;
+		});
+
+		io.emit('userList', usersInRoom[room]);
+	});
 	// socket.on('disconnect', () => {
 	// 	// Remove user from the room list
 	// 	usersInRoom[room] = usersInRoom[room].filter((id) => id !== socket.id);
