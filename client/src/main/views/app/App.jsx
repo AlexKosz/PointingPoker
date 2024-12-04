@@ -17,7 +17,6 @@ import Header from '../../components/Header';
 const AppRouter = () => {
 	return (
 		<>
-			<Header />
 			<HistoryRouter history={history}>
 				<Routes>
 					<Route
