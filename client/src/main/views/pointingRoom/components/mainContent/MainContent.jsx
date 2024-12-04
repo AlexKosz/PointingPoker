@@ -8,7 +8,7 @@ const MainContent = ({ selectValue, selectedValue, participants }) => {
 		<main className="main-content">
 			<VotingArea
 				selectValue={selectValue}
-				selectedValue={(s) => selectedValue(s)}
+				selectedValue={selectedValue}
 			/>
 			<VotingProgress progress={Math.random()} />
 

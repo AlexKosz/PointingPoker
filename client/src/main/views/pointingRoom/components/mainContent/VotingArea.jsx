@@ -3,6 +3,7 @@ import PointCard from './PointCard';
 
 const VotingArea = ({ selectValue, selectedValue }) => {
 	const voteNumbers = [0, 0.5, 1, 2, 3, 4, 5, 6, 7, 8];
+	console.log(selectedValue);
 	const isValueNull = selectedValue === null;
 	const abstainBtnClass = isValueNull
 		? 'abstain-button voted'
@@ -23,7 +24,7 @@ const VotingArea = ({ selectValue, selectedValue }) => {
 			<button
 				className={abstainBtnClass}
 				onClick={() => {
-					console.log('na');
+					selectValue(null);
 				}}
 			>
 				Abstain

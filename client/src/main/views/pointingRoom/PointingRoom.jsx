@@ -22,7 +22,7 @@ const PointingRoom = () => {
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const [selectedValue, setSelectedValue] = useState(null);
+	const [selectedValue, setSelectedValue] = useState(undefined);
 
 	const user = useSelector((state) => state.user.user);
 
@@ -47,14 +47,11 @@ const PointingRoom = () => {
 		socket.on('userList', (data) => {
 			console.log('server sent back', data);
 			setUsers(data);
-			const userIndex = data.findIndex((element) => element.id === socket.id);
-			setSelectedValue(data[userIndex].vote);
-			console.log(userIndex);
 		});
 	}, [socket]);
 
 	useEffect(() => {
-		if (selectedValue || selectedValue !== null) {
+		if (selectedValue || selectedValue === null) {
 			console.log('emiting vote', selectedValue);
 			socket.emit('vote', room, user, selectedValue);
 		}
