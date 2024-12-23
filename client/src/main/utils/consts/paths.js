@@ -1,6 +1,7 @@
-import searchParamOptions from "./searchParamOptions";
-
-export default {
-	login: "/",
-	room: `/room/:${searchParamOptions.ROOM}?/`,
+const paths = {
+	login: '/',
+	roomPattern: `/room/:room?/`,
+	room: (room) => `/room/${room}?/`,
 };
+
+export default paths;

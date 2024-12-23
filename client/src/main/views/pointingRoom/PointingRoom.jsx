@@ -1,63 +1,85 @@
-import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
-import { useSearchParams } from "react-router-dom";
-import searchParamOptions from "../../utils/consts/searchParamOptions";
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import UserProfile from './components/UserProfile';
+import VoteControls from './components/VoteControls';
+import MainContent from './components/mainContent/MainContent';
+import Modal from './components/modal/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, clearUser } from '../../../actions/userActions';
+import paths from '../../utils/consts/paths';
+import Header from '../../components/Header';
 
-const socket = io("http://localhost:3001"); // Replace with your server URL
+const socket = io('http://localhost:3001'); // Replace with your server URL
 
-const ChatRoom = () => {
+const PointingRoom = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
-	console.log(searchParams);
-	const room = searchParams.get(searchParamOptions.ROOM);
-	console.log(room);
+	const { room } = useParams();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const [users, setUsers] = useState([]);
-	const [userId, setUserId] = useState(null);
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const [selectedValue, setSelectedValue] = useState(undefined);
+
+	const user = useSelector((state) => state.user.user);
 
 	useEffect(() => {
-		if (!room) {
-			return;
+		if (!user) {
+			navigate(paths.login);
 		}
-		// Join the room
-		// Change to name & room
-		socket.emit("joinRoom", room);
 
-		// Receive user list when joining the room
-		socket.on("userList", (users) => {
-			setUsers(users);
-			setUserId(socket.id); // Set the user ID once connected
+		if (user) {
+			socket.emit('joinRoom', room, user);
+		}
+	}, []);
+
+	useEffect(() => {
+		socket.on('iJoin', (data) => {
+			console.log('ijoin server sent back', data);
+			dispatch(setUser(data));
 		});
+	}, [socket]);
 
-		// Receive notification when a user joins
-		socket.on("userJoined", (newUserId) => {
-			console.log("new user joined");
-			setUsers((prevUsers) => [...prevUsers, newUserId]);
+	useEffect(() => {
+		socket.on('userList', (data) => {
+			console.log('server sent back', data);
+			setUsers(data);
 		});
+	}, [socket]);
 
-		// Receive notification when a user leaves
-		socket.on("userLeft", (leftUserId) => {
-			setUsers((prevUsers) => prevUsers.filter((id) => id !== leftUserId));
-		});
+	useEffect(() => {
+		if (selectedValue || selectedValue === null) {
+			console.log('emiting vote', selectedValue);
+			socket.emit('vote', room, user, selectedValue);
+		}
+	}, [selectedValue]);
 
-		// Clean up on unmount
-		return () => {
-			socket.off("userList");
-			socket.off("userJoined");
-			socket.off("userLeft");
-		};
-	}, [room]);
+	const clearVotes = () => {
+		socket.emit('clearVotes', room);
+		setSelectedValue(undefined);
+	};
 
 	return (
-		<div>
-			<h1>Room: {room || "No room found"}</h1>
-			<h2>Users in Room</h2>
-			<ul>
-				{users.map((user) => (
-					<li key={user}>{user === userId ? "You" : user}</li>
-				))}
-			</ul>
-		</div>
+		<>
+			<Header />
+			<div className="mainRoomDiv">
+				<UserProfile user={user} />
+				<VoteControls
+					openModal={() => setIsModalOpen(true)}
+					clearVotes={clearVotes}
+				/>
+				<MainContent
+					selectedValue={selectedValue}
+					selectValue={(v) => setSelectedValue(v)}
+					participants={users}
+				/>
+				{isModalOpen && <Modal closeModal={() => setIsModalOpen(false)} />}
+			</div>
+		</>
 	);
 };
 
-export default ChatRoom;
+export default PointingRoom;
